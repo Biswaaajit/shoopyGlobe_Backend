@@ -9,3 +9,4 @@ function userRoutes(app) {
   app.post("/login", loginMiddleware, loginUser);
 }
 export default userRoutes;
+ 

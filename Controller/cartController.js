@@ -23,6 +23,9 @@ export async function updateCart(req, res) {
   try {
     const productId = req.params.id;
     const newData = req.body;
+    if (!newData.quantities) {
+      return res.status(400).json({ message: "Invalid update options" });
+    }
     const updateData = await cartModel.findByIdAndUpdate(productId, newData, {
       new: true,
     });

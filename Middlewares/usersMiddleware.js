@@ -22,11 +22,11 @@ export async function registerMiddleware(req, res, next) {
 export async function loginMiddleware(req, res, next) {
   try {
     const { email } = req.body;
-    const emailCheck = await userModel.findOne({ email });
-    if (!emailCheck) {
+    const user = await userModel.findOne({ email });
+    if (!user) {
       return res.status(404).json({ message: "User does not exist !!!" });
     }
-    req.userInfo = emailCheck;
+    req.userInfo = user;
     next();
   } catch (err) {
     res
